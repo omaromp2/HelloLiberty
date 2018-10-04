@@ -6,10 +6,9 @@ var Twitter = require('twitter');
 var config = require('./config.js');
 var T = new Twitter(config);
 var moment = require('moment');
-var date = moment().format('LLL')
+var date = moment().format('MMMM Do YYYY, h:mm:ss a')
 // var ran = Math.random().toString(8).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-var random = Math.floor(Math.random() * 1000) + 1;
-var ran = Math.floor(Math.random() * random) + 1;
+
 
 app.get('/', (req, res) => res.send('Yeah'))
 
@@ -18,7 +17,7 @@ app.get('/tweet', (req, res) => {
 	res.send('Lets tweet');
 
 	var tweet = {
-		status: ran + ' - Querido @LibertyPR todavia sin servicio ' + date
+		status: makeid() +  ' - Querido @LibertyPR todavia sin servicio - ' + date 
 	}
 
 	T.post('statuses/update',tweet, tweetErr);
@@ -29,6 +28,17 @@ app.get('/tweet', (req, res) => {
 		} else {
 			console.log("Tweet exitoso... :') ");
 		}
+	}
+
+	// funcion para texto random 
+	function makeid() {
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	
+		for (var i = 0; i < 5; i++)
+		text += possible.charAt(Math.floor(Math.random() * possible.length));
+	
+		return text;
 	}
 
 
