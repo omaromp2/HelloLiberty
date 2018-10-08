@@ -6,13 +6,13 @@ var Twitter = require('twitter');
 var config = require('./config.js');
 var T = new Twitter(config);
 var moment = require('moment');
-var date = moment().format('MMM Do YY')
 // var ran = Math.random().toString(8).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
 
 app.get('/', (req, res) => res.send('Yeah'))
 
 app.get('/tweet', (req, res) => {
+	var date = moment().format('lll');
 	console.log("we are Ready");
 	res.send('Lets tweet');
 
